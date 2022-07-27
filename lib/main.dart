@@ -24,12 +24,23 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Мои расходы'),
-      ),
-      body: Center(
-        child: Text('Всё самое важное здесь!'),
-      ),
-    );
+        appBar: AppBar(
+          title: Text('Мои расходы'),
+        ),
+        body: Column(
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              child: Card(
+                color: Colors.blueGrey,
+                child: Text('Добавлю позже'),
+                elevation: 10,
+              ),
+            ),
+            Card(
+              child: Text('Список трат'),
+            ),
+          ],
+        ));
   }
 }
