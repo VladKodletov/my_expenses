@@ -97,7 +97,7 @@ class MyHomePage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            tx.myDate.toString(),
+                            DateFormat().format(tx.myDate),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
