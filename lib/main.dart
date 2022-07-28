@@ -29,6 +29,12 @@ class MyHomePage extends StatelessWidget {
       amount: 650,
       myDate: DateTime.now(),
     ),
+    Transaction(
+      id: 't2',
+      name: 'Новая рубашка',
+      amount: 400,
+      myDate: DateTime.now(),
+    ),
   ];
 
   @override
@@ -52,12 +58,57 @@ class MyHomePage extends StatelessWidget {
                 elevation: 10,
               ),
             ),
-            Card(
-              child: Text(
-                'Список трат',
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Colors.deepPurpleAccent,
+            Column(
+              children: transactioms.map((tx) {
+                return Card(
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 18,
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.indigo,
+                            width: 2,
+                          ),
+                        ),
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.indigo,
+                          ),
+                          tx.amount.toString(),
+                        ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            tx.name,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            tx.myDate.toString(),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Colors.grey,
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                );
+              }).toList(),
             ),
           ],
         ));
