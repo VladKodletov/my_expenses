@@ -45,7 +45,7 @@ class MyHomePage extends StatelessWidget {
           title: Text('Мои расходы'),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
@@ -57,6 +57,32 @@ class MyHomePage extends StatelessWidget {
                   style: TextStyle(color: Colors.white),
                 ),
                 elevation: 10,
+              ),
+            ),
+            Card(
+              elevation: 5,
+              child: Container(
+                padding: EdgeInsets.all(52),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    TextField(
+                      decoration: InputDecoration(
+                          labelText: 'Введи наименование покупки'),
+                    ),
+                    TextField(
+                      decoration:
+                          InputDecoration(labelText: 'Введи потраченную сумму'),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(15),
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Text('Добавить трату'),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Column(
