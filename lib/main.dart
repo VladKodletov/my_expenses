@@ -30,23 +30,25 @@ class MyHomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('Мои расходы'),
         ),
-        body: Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Container(
-              width: double.infinity,
-              child: Card(
-                color: Colors.blueGrey,
-                child: Text(
-                  'Добавлю позже',
-                  style: TextStyle(color: Colors.white),
+        body: SingleChildScrollView(
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Container(
+                width: double.infinity,
+                child: Card(
+                  color: Colors.blueGrey,
+                  child: Text(
+                    'Добавлю позже',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  elevation: 10,
                 ),
-                elevation: 10,
               ),
-            ),
-            UserTransaction(),
-          ],
+              UserTransaction(),
+            ],
+          ),
         ));
   }
 }
