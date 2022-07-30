@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class Transaction {
   final String id;
   final String name;
-  final double amount;
   final DateTime myDate;
+  final int amount;
 
   Transaction({
     required this.id,

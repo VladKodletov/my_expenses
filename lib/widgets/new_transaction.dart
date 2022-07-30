@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class NewTransactions extends StatelessWidget {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
-  Function addTrans;
+  final Function addTrans;
 
   NewTransactions(this.addTrans);
 
@@ -17,10 +18,12 @@ class NewTransactions extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             TextField(
+              controller: titleController,
               decoration:
                   InputDecoration(labelText: 'Введи наименование покупки'),
             ),
             TextField(
+              controller: amountController,
               decoration: InputDecoration(labelText: 'Введи потраченную сумму'),
             ),
             Container(
@@ -29,7 +32,7 @@ class NewTransactions extends StatelessWidget {
                 onPressed: () {
                   addTrans(
                     titleController.text,
-                    double.parse(amountController.text),
+                    int.tryParse(amountController.value.text) ?? 0,
                   );
                 },
                 child: Text('Добавить трату'),
