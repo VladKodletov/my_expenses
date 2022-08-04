@@ -24,7 +24,7 @@ class _UserTransactionState extends State<UserTransaction> {
     ),
   ];
 
-  void _addTransaction(String tittle, int amountAdd) {
+  void _addTransaction(String tittle, double amountAdd) {
     final newTrans = Transaction(
       name: tittle,
       amount: amountAdd,

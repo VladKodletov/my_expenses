@@ -36,7 +36,7 @@ class TransactionList extends StatelessWidget {
                       fontSize: 20,
                       color: Colors.indigo,
                     ),
-                    '\$${transactions[index].amount}',
+                    '\$${transactions[index].amount.toStringAsFixed(2)}',
                   ),
                 ),
                 Column(

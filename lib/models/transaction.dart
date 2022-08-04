@@ -4,7 +4,7 @@ class Transaction {
   final String id;
   final String name;
   final DateTime myDate;
-  final int amount;
+  final double amount;
 
   Transaction({
     required this.id,
