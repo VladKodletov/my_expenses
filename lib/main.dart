@@ -14,9 +14,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Твои расходы',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
+        accentColor: Colors.grey[200],
       ),
       home: MyHomePage(),
     );
@@ -30,18 +31,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
-    Transaction(
-      id: 't1',
-      name: 'Новые ботинки',
-      myDate: DateTime.now(),
-      amount: 650,
-    ),
-    Transaction(
-      id: 't2',
-      name: 'Новая рубашка',
-      myDate: DateTime.now(),
-      amount: 400,
-    ),
+    // Transaction(
+    //   id: 't1',
+    //   name: 'Новые ботинки',
+    //   myDate: DateTime.now(),
+    //   amount: 650,
+    // ),
+    // Transaction(
+    //   id: 't2',
+    //   name: 'Новая рубашка',
+    //   myDate: DateTime.now(),
+    //   amount: 400,
+    // ),
   ];
 
   void _addTransaction(String tittle, double amountAdd) {
