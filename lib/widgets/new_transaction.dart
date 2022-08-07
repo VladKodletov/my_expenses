@@ -52,6 +52,22 @@ class _NewTransactionsState extends State<NewTransactions> {
               decoration: InputDecoration(labelText: 'Введи потраченную сумму'),
             ),
             Container(
+              height: 50,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text('Дата не выбрана => '),
+                  OutlinedButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Выберите дату',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Container(
               padding: EdgeInsets.all(15),
               child: ElevatedButton(
                 onPressed: submitData,
