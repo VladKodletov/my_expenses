@@ -11,13 +11,13 @@ class NewTransactions extends StatefulWidget {
 }
 
 class _NewTransactionsState extends State<NewTransactions> {
-  final titleController = TextEditingController();
+  final _titleController = TextEditingController();
+  final _amountController = TextEditingController();
+  DateTime? _selectedDate;
 
-  final amountController = TextEditingController();
-
-  void submitData() {
-    final enteredTitle = titleController.text;
-    final enteredAmount = double.parse(amountController.text);
+  void _submitData() {
+    final enteredTitle = _titleController.text;
+    final enteredAmount = double.parse(_amountController.text);
 
     if (enteredTitle.isEmpty || enteredAmount <= 0) {
       return;
@@ -30,6 +30,22 @@ class _NewTransactionsState extends State<NewTransactions> {
     Navigator.of(context).pop();
   }
 
+  void _presentDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2022),
+      lastDate: DateTime.now(),
+    ).then((pickedData) {
+      if (pickedData == null) {
+        return;
+      }
+      setState(() {
+        _selectedDate = pickedData;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -40,15 +56,15 @@ class _NewTransactionsState extends State<NewTransactions> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             TextField(
-              controller: titleController,
-              onSubmitted: (_) => submitData(),
+              controller: _titleController,
+              onSubmitted: (_) => _submitData(),
               decoration:
                   InputDecoration(labelText: 'Введи наименование покупки'),
             ),
             TextField(
-              controller: amountController,
+              controller: _amountController,
               keyboardType: TextInputType.number,
-              onSubmitted: (_) => submitData(),
+              onSubmitted: (_) => _submitData(),
               decoration: InputDecoration(labelText: 'Введи потраченную сумму'),
             ),
             Container(
@@ -56,9 +72,11 @@ class _NewTransactionsState extends State<NewTransactions> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text('Дата не выбрана => '),
+                  Text(_selectedDate == null
+                      ? 'Дата не выбрана => '
+                      : DateFormat.yMMMd().format(_selectedDate!).toString()),
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: _presentDatePicker,
                     child: Text(
                       'Выберите дату',
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -70,7 +88,7 @@ class _NewTransactionsState extends State<NewTransactions> {
             Container(
               padding: EdgeInsets.all(15),
               child: ElevatedButton(
-                onPressed: submitData,
+                onPressed: _submitData,
                 child: Text('Добавить трату'),
               ),
             ),
