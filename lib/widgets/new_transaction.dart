@@ -26,11 +26,7 @@ class _NewTransactionsState extends State<NewTransactions> {
       return;
     }
 
-    widget.addTrans(
-      enteredTitle,
-      enteredAmount,
-      _selectedDate
-    );
+    widget.addTrans(enteredTitle, enteredAmount, _selectedDate);
     Navigator.of(context).pop();
   }
 
@@ -52,51 +48,59 @@ class _NewTransactionsState extends State<NewTransactions> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Container(
-        padding: EdgeInsets.all(52),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            TextField(
-              controller: _titleController,
-              onSubmitted: (_) => _submitData(),
-              decoration:
-                  InputDecoration(labelText: 'Введи наименование покупки'),
-            ),
-            TextField(
-              controller: _amountController,
-              keyboardType: TextInputType.number,
-              onSubmitted: (_) => _submitData(),
-              decoration: InputDecoration(labelText: 'Введи потраченную сумму'),
-            ),
-            Container(
-              height: 50,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(_selectedDate == null
-                      ? 'Дата не выбрана => '
-                      : DateFormat.yMMMd().format(_selectedDate!).toString()),
-                  OutlinedButton(
-                    onPressed: _presentDatePicker,
-                    child: Text(
-                      'Выберите дату',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  )
-                ],
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Container(
+          padding: EdgeInsets.only(
+            top: 10,
+            left: 10,
+            right: 10,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              TextField(
+                controller: _titleController,
+                onSubmitted: (_) => _submitData(),
+                decoration:
+                    InputDecoration(labelText: 'Введи наименование покупки'),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.all(15),
-              child: ElevatedButton(
-                onPressed: _submitData,
-                child: Text('Добавить трату'),
+              TextField(
+                controller: _amountController,
+                keyboardType: TextInputType.number,
+                onSubmitted: (_) => _submitData(),
+                decoration:
+                    InputDecoration(labelText: 'Введи потраченную сумму'),
               ),
-            ),
-          ],
+              Container(
+                height: 50,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(_selectedDate == null
+                        ? 'Дата не выбрана => '
+                        : DateFormat.yMMMd().format(_selectedDate!).toString()),
+                    OutlinedButton(
+                      onPressed: _presentDatePicker,
+                      child: Text(
+                        'Выберите дату',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(15),
+                child: ElevatedButton(
+                  onPressed: _submitData,
+                  child: Text('Добавить трату'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
