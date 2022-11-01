@@ -1,13 +1,14 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
-import '../main.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
   final deleteTx;
 
-  TransactionList(this.transactions, this.deleteTx);
+  const TransactionList(this.transactions, this.deleteTx, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +16,14 @@ class TransactionList extends StatelessWidget {
         ? LayoutBuilder(builder: (context, constraints) {
             return Column(
               children: <Widget>[
-                Text(
+                const Text(
                   'Нет добавленных трат!',
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 22,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
@@ -38,7 +39,7 @@ class TransactionList extends StatelessWidget {
         : ListView.builder(
             itemBuilder: (context, index) {
               return Card(
-                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
                 elevation: 5,
                 child: ListTile(
                   leading: CircleAvatar(
@@ -58,14 +59,14 @@ class TransactionList extends StatelessWidget {
                     DateFormat.yMMMMd().format(transactions[index].myDate),
                   ),
                   trailing: MediaQuery.of(context).size.width > 500
-                      ? FlatButton.icon(
-                          icon: Icon(Icons.delete),
-                          textColor: Theme.of(context).errorColor,
+                      ? IconButton(
+                          icon: const Icon(Icons.delete),
+                          color: Theme.of(context).errorColor,
                           onPressed: () => deleteTx(transactions[index].id),
-                          label: Text('Удалить'),
+                          tooltip: 'Удалить',
                         )
                       : IconButton(
-                          icon: Icon(Icons.delete),
+                          icon: const Icon(Icons.delete),
                           color: Theme.of(context).errorColor,
                           onPressed: () => deleteTx(transactions[index].id),
                         ),

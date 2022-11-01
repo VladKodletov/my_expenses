@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import './widgets/chart.dart';
 import './widgets/new_transaction.dart';
@@ -9,11 +8,7 @@ import './widgets/transaction_list.dart';
 import './models/transaction.dart';
 
 void main() {
-  // SystemChrome.setPreferredOrientations([
-  //   DeviceOrientation.portraitUp,
-  //   DeviceOrientation.portraitDown,
-  // ]);
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -25,15 +20,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Твои расходы',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.grey[200],
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple).copyWith(secondary: Colors.grey[200]),
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -60,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return _userTransactions.where((tx) {
       return tx.myDate.isAfter(
         DateTime.now().subtract(
-          Duration(days: 7),
+          const Duration(days: 7),
         ),
       );
     }).toList();
@@ -99,15 +95,15 @@ class _MyHomePageState extends State<MyHomePage> {
     final mediaQ = MediaQuery.of(context);
     final isLandscape = mediaQ.orientation == Orientation.landscape;
     final appBar = AppBar(
-      title: Text('Мои расходы'),
+      title: const Text('Мои расходы'),
       actions: <Widget>[
         IconButton(
           onPressed: () => _startAddNewTransaction(context),
-          icon: Icon(Icons.add),
+          icon: const Icon(Icons.add),
         )
       ],
     );
-    final txListWidget = Container(
+    final txListWidget = SizedBox(
         height: (mediaQ.size.height -
                 appBar.preferredSize.height -
                 mediaQ.padding.top) *
@@ -124,9 +120,9 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Показать диаграмму'),
+                  const Text('Показать диаграмму'),
                   Switch.adaptive(
-                    activeColor: Theme.of(context).accentColor,
+                    activeColor: Theme.of(context).colorScheme.secondary,
                     value: _showChart,
                     onChanged: (value) {
                       setState(() {
@@ -137,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             if (!isLandscape)
-              Container(
+              SizedBox(
                   height: (mediaQ.size.height -
                           appBar.preferredSize.height -
                           mediaQ.padding.top) *
@@ -146,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
             if (!isLandscape) txListWidget,
             if (isLandscape)
               _showChart
-                  ? Container(
+                  ? SizedBox(
                       height: (mediaQ.size.height -
                               appBar.preferredSize.height -
                               mediaQ.padding.top) *
@@ -160,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: Platform.isIOS
           ? Container()
           : FloatingActionButton(
-              child: Icon(Icons.add),
+              child: const Icon(Icons.add),
               onPressed: () => _startAddNewTransaction(context),
             ),
     );

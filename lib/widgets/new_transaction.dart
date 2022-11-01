@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 class NewTransactions extends StatefulWidget {
   final Function addTrans;
 
-  NewTransactions(this.addTrans);
+  const NewTransactions(this.addTrans, {super.key});
 
   @override
   State<NewTransactions> createState() => _NewTransactionsState();
@@ -65,16 +65,16 @@ class _NewTransactionsState extends State<NewTransactions> {
                 controller: _titleController,
                 onSubmitted: (_) => _submitData(),
                 decoration:
-                    InputDecoration(labelText: 'Введи наименование покупки'),
+                    const InputDecoration(labelText: 'Введи наименование покупки'),
               ),
               TextField(
                 controller: _amountController,
                 keyboardType: TextInputType.number,
                 onSubmitted: (_) => _submitData(),
                 decoration:
-                    InputDecoration(labelText: 'Введи потраченную сумму'),
+                    const InputDecoration(labelText: 'Введи потраченную сумму'),
               ),
-              Container(
+              SizedBox(
                 height: 50,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -84,7 +84,7 @@ class _NewTransactionsState extends State<NewTransactions> {
                         : DateFormat.yMMMd().format(_selectedDate!).toString()),
                     OutlinedButton(
                       onPressed: _presentDatePicker,
-                      child: Text(
+                      child: const Text(
                         'Выберите дату',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
@@ -93,10 +93,10 @@ class _NewTransactionsState extends State<NewTransactions> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(15),
+                padding: const EdgeInsets.all(15),
                 child: ElevatedButton(
                   onPressed: _submitData,
-                  child: Text('Добавить трату'),
+                  child: const Text('Добавить трату'),
                 ),
               ),
             ],
