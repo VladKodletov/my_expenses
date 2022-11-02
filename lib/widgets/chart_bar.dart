@@ -5,7 +5,8 @@ class ChartBar extends StatelessWidget {
   final double spendingAmount;
   final double spendingPctOfTotal;
 
-  const ChartBar(this.label, this.spendingAmount, this.spendingPctOfTotal, {super.key});
+  const ChartBar(this.label, this.spendingAmount, this.spendingPctOfTotal,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class ChartBar extends StatelessWidget {
                     heightFactor: spendingPctOfTotal,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
+                        color: Colors.orange[400],
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),

@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Твои расходы',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange, backgroundColor: Colors.orange[400])
             .copyWith(secondary: Colors.grey[200]),
       ),
       home: const MyHomePage(),
@@ -143,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: Platform.isIOS
           ? Container()
           : FloatingActionButton(
-              backgroundColor: Colors.deepPurple,
+              backgroundColor: Colors.orange[700],
               child: const Icon(Icons.add),
               onPressed: () => _startAddNewTransaction(context),
             ),

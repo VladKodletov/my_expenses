@@ -16,11 +16,12 @@ class _NewTransactionsState extends State<NewTransactions> {
   DateTime? _selectedDate;
 
   void _submitData() {
+    final enteredTitle = _titleController.text;
+    final enteredAmount = double.parse(_amountController.text);
+
     if (_amountController.text.isEmpty) {
       return;
     }
-    final enteredTitle = _titleController.text;
-    final enteredAmount = double.parse(_amountController.text);
 
     if (enteredTitle.isEmpty || enteredAmount <= 0 || _selectedDate == null) {
       return;
@@ -64,8 +65,8 @@ class _NewTransactionsState extends State<NewTransactions> {
               TextField(
                 controller: _titleController,
                 onSubmitted: (_) => _submitData(),
-                decoration:
-                    const InputDecoration(labelText: 'Введи наименование покупки'),
+                decoration: const InputDecoration(
+                    labelText: 'Введи наименование покупки'),
               ),
               TextField(
                 controller: _amountController,
