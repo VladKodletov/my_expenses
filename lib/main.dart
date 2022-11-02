@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Твои расходы',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple).copyWith(secondary: Colors.grey[200]),
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
+            .copyWith(secondary: Colors.grey[200]),
       ),
       home: const MyHomePage(),
     );
@@ -35,20 +36,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _userTransactions = [
-    // Transaction(
-    //   id: 't1',
-    //   name: 'Новые ботинки',
-    //   myDate: DateTime.now(),
-    //   amount: 650,
-    // ),
-    // Transaction(
-    //   id: 't2',
-    //   name: 'Новая рубашка',
-    //   myDate: DateTime.now(),
-    //   amount: 400,
-    // ),
-  ];
+  final List<Transaction> _userTransactions = [];
 
   bool _showChart = false;
 
@@ -113,7 +101,6 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             if (isLandscape)
@@ -156,6 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: Platform.isIOS
           ? Container()
           : FloatingActionButton(
+              backgroundColor: Colors.deepPurple,
               child: const Icon(Icons.add),
               onPressed: () => _startAddNewTransaction(context),
             ),
