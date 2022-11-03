@@ -8,9 +8,10 @@ import './widgets/chart.dart';
 import './widgets/new_transaction.dart';
 import './widgets/transaction_list.dart';
 import './models/transaction.dart';
-import 'boxes.dart';
+import 'widgets/chart_bar.dart';
 
 late Box box;
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -49,7 +50,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _userTransactions = [];
+  //обратить внимание на метот перевода инфы из box в List<Transaction>
+  final List<Transaction> _userTransactions =
+      box.values.toList().cast<Transaction>();
 
   bool _showChart = false;
 
@@ -63,41 +66,33 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-   _addTransaction(
-      String tittle, double amountAdd, DateTime chosenDate) {
+  addTransaction(
+    String tittle,
+    double amountAdd,
+    DateTime chosenDate,
+  ) {
     final newTrans = Transaction(
       name: tittle,
       amount: amountAdd,
       myDate: chosenDate,
       id: DateTime.now().toString(),
     );
-    final box = Boxes.getTransactions();
     box.add(newTrans);
-    // setState(() {
-    //   _userTransactions.add(newTrans);
-    // });
+    
   }
 
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
         context: ctx,
-        builder: (bCtx) {
-          return NewTransactions(_addTransaction);
+        builder: (ctx) {
+          return NewTransactions(addTransaction);
         });
   }
 
-  void _deleteTransaction(String id) {
-    setState(() {
-      _userTransactions.removeWhere((tx) {
-        return tx.id == id;
-      });
-    });
-  }
-
   @override
-  void dispose() { 
+  void dispose() {
     Hive.close();
-    super.dispose(); 
+    super.dispose();
   }
 
   @override
@@ -118,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 appBar.preferredSize.height -
                 mediaQ.padding.top) *
             0.7,
-        child: TransactionList(_userTransactions, _deleteTransaction));
+        child: const TransactionList());
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
