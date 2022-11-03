@@ -3,10 +3,11 @@
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
+import 'package:hive/hive.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
-  final deleteTx;
+  final dynamic deleteTx;
 
   const TransactionList(this.transactions, this.deleteTx, {super.key});
 

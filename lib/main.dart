@@ -2,12 +2,23 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
 import './widgets/chart.dart';
 import './widgets/new_transaction.dart';
 import './widgets/transaction_list.dart';
 import './models/transaction.dart';
+import 'boxes.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+
+  Hive.registerAdapter(TransactionAdapter());
+  await Hive.openBox<Transaction>('transactions');
+
   runApp(const MyApp());
 }
 
@@ -20,7 +31,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Твои расходы',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange, backgroundColor: Colors.orange[400])
+        colorScheme: ColorScheme.fromSwatch(
+                primarySwatch: Colors.orange,
+                backgroundColor: Colors.orange[400])
             .copyWith(secondary: Colors.grey[200]),
       ),
       home: const MyHomePage(),
@@ -50,16 +63,19 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addTransaction(String tittle, double amountAdd, DateTime chosenDate) {
+  Future? _addTransaction(
+      String tittle, double amountAdd, DateTime chosenDate) {
     final newTrans = Transaction(
       name: tittle,
       amount: amountAdd,
       myDate: chosenDate,
       id: DateTime.now().toString(),
     );
-    setState(() {
-      _userTransactions.add(newTrans);
-    });
+    final box = Boxes.getTransactions();
+    box?.add(newTrans);
+    // setState(() {
+    //   _userTransactions.add(newTrans);
+    // });
   }
 
   void _startAddNewTransaction(BuildContext ctx) {
@@ -76,6 +92,12 @@ class _MyHomePageState extends State<MyHomePage> {
         return tx.id == id;
       });
     });
+  }
+
+  @override
+  void dispose() {
+    Hive.close();
+    super.dispose();
   }
 
   @override
