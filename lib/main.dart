@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import './widgets/chart.dart';
@@ -11,13 +10,14 @@ import './widgets/transaction_list.dart';
 import './models/transaction.dart';
 import 'boxes.dart';
 
+late Box box;
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
 
   Hive.registerAdapter(TransactionAdapter());
-  await Hive.openBox<Transaction>('transactions');
+  box = await Hive.openBox<Transaction>('transactions');
 
   runApp(const MyApp());
 }
@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  Future? _addTransaction(
+   _addTransaction(
       String tittle, double amountAdd, DateTime chosenDate) {
     final newTrans = Transaction(
       name: tittle,
@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
       id: DateTime.now().toString(),
     );
     final box = Boxes.getTransactions();
-    box?.add(newTrans);
+    box.add(newTrans);
     // setState(() {
     //   _userTransactions.add(newTrans);
     // });
@@ -95,9 +95,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  void dispose() {
+  void dispose() { 
     Hive.close();
-    super.dispose();
+    super.dispose(); 
   }
 
   @override
