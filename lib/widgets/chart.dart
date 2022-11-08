@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../widgets/chart_bar.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
-import 'package:hive/hive.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
@@ -36,6 +35,8 @@ class Chart extends StatelessWidget {
       return sum + (item['amount'] as num);
     });
   }
+
+
 
   @override
   Widget build(BuildContext context) {
