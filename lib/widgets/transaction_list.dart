@@ -6,16 +6,8 @@ import 'package:intl/intl.dart';
 class TransactionList extends StatelessWidget {
   const TransactionList({super.key});
 
-  // final List<Transaction> transactions;
-  // List<Transaction> boxTransaction;
-  //  dynamic deleteTx;
-
-  // TransactionList(this.boxTransaction, this.deleteTx, {super.key});
-
   @override
   Widget build(BuildContext context) {
-    // Transaction? myTransaction = box.get('transaction');
-
     return ValueListenableBuilder<Box<Transaction>>(
         valueListenable: Hive.box<Transaction>('transactions').listenable(),
         builder: (context, Box<Transaction> box, _) {

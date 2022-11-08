@@ -8,7 +8,6 @@ import './widgets/chart.dart';
 import './widgets/new_transaction.dart';
 import './widgets/transaction_list.dart';
 import './models/transaction.dart';
-import 'widgets/chart_bar.dart';
 
 late Box box;
 
@@ -50,7 +49,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  //обратить внимание на метот перевода инфы из box в List<Transaction>
+  //обратить внимание на метод перевода инфы из box в List<Transaction>
   final List<Transaction> _userTransactions =
       box.values.toList().cast<Transaction>();
 
