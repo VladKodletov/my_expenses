@@ -16,6 +16,7 @@ class TransactionList extends StatelessWidget {
                   itemCount: box.values.length,
                   itemBuilder: (context, index) {
                     Transaction? myTransaction = box.getAt(index);
+
                     return Card(
                       margin: const EdgeInsets.symmetric(
                           vertical: 8, horizontal: 5),

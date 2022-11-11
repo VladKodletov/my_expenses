@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
 
-import './widgets/chart.dart';
 import './widgets/new_transaction.dart';
 import './widgets/transaction_list.dart';
 import './models/transaction.dart';
+import 'widgets/new_chart.dart';
 
 late Box box;
 
@@ -35,13 +35,13 @@ class MyApp extends StatelessWidget {
                 backgroundColor: Colors.orange[400])
             .copyWith(secondary: Colors.grey[200]),
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({super.key});
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -50,12 +50,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   //обратить внимание на метод перевода инфы из box в List<Transaction>
 
-  final List<Transaction> _userTransactions =
-      box.values.toList().cast<Transaction>();
-
   bool _showChart = false;
-
-  
 
   addTransaction(
     String tittle,
@@ -77,16 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (ctx) {
           return NewTransactions(addTransaction);
         });
-  }
-
-  List<Transaction> get _recentTransactions {
-    return _userTransactions.where((tx) {
-      return tx.myDate.isAfter(
-        DateTime.now().subtract(
-          const Duration(days: 7),
-        ),
-      );
-    }).toList();
   }
 
   @override
@@ -142,7 +127,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           appBar.preferredSize.height -
                           mediaQ.padding.top) *
                       0.3,
-                  child: Chart(_recentTransactions)),
+                  child: Chart()),
+            // child: Chart(_recentTransactions)),
             if (!isLandscape) txListWidget,
             if (isLandscape)
               _showChart
@@ -151,7 +137,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               appBar.preferredSize.height -
                               mediaQ.padding.top) *
                           0.7,
-                      child: Chart(_recentTransactions))
+                      child: Chart())
+                  // child: Chart(_recentTransactions))
                   : txListWidget
           ],
         ),
