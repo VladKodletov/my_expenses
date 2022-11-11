@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
 
+import 'package:hive_flutter/hive_flutter.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
 
-class Chart extends StatelessWidget {
-  final List<Transaction> recentTransactions;
+var box = Hive.box<Transaction>('transactions');
 
-  const Chart(this.recentTransactions, {super.key});
+class Chart extends StatelessWidget {
+  Chart({super.key});
+
+  final List<Transaction> userTransactions =
+      box.values.toList().cast<Transaction>();
+
+  List<Transaction> get recentTransactions {
+    return userTransactions.where((tx) {
+      return tx.myDate.isAfter(
+        DateTime.now().subtract(
+          const Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
 
   List<Map<String, Object>> get groupedTransactionValues {
     return List.generate(7, (index) {
@@ -36,8 +50,6 @@ class Chart extends StatelessWidget {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -64,10 +76,6 @@ class Chart extends StatelessWidget {
     );
   }
 }
-
-
-
-
 
 class ChartBar extends StatelessWidget {
   final String label;
