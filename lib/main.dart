@@ -7,7 +7,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import './widgets/new_transaction.dart';
 import './widgets/transaction_list.dart';
 import './models/transaction.dart';
-import 'widgets/new_chart.dart';
+import 'widgets/chart.dart';
 
 late Box box;
 
@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           appBar.preferredSize.height -
                           mediaQ.padding.top) *
                       0.3,
-                  child: Chart()),
+                  child: const MainChart()),
             // child: Chart(_recentTransactions)),
             if (!isLandscape) txListWidget,
             if (isLandscape)
@@ -137,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               appBar.preferredSize.height -
                               mediaQ.padding.top) *
                           0.7,
-                      child: Chart())
+                      child: const MainChart())
                   // child: Chart(_recentTransactions))
                   : txListWidget
           ],

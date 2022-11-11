@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_expenses/widgets/chart_bar.dart';
 import '../models/transaction.dart';
 import 'package:intl/intl.dart';
 
-var box = Hive.box<Transaction>('transactions');
+class MainChart extends StatelessWidget {
+  const MainChart({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      builder: (context, value, child) => Chart(),
+      valueListenable: Hive.box<Transaction>('transactions').listenable(),
+    );
+  }
+}
 
 class Chart extends StatelessWidget {
   Chart({super.key});
 
   final List<Transaction> userTransactions =
-      box.values.toList().cast<Transaction>();
+      Hive.box<Transaction>('transactions').values.toList().cast<Transaction>();
 
   List<Transaction> get recentTransactions {
     return userTransactions.where((tx) {
@@ -73,64 +84,6 @@ class Chart extends StatelessWidget {
           }).toList(),
         ),
       ),
-    );
-  }
-}
-
-class ChartBar extends StatelessWidget {
-  final String label;
-  final double spendingAmount;
-  final double spendingPctOfTotal;
-
-  const ChartBar(this.label, this.spendingAmount, this.spendingPctOfTotal,
-      {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Column(
-          children: [
-            SizedBox(
-              height: constraints.maxHeight * 0.15,
-              child: FittedBox(
-                child: Text('\$${spendingAmount.toStringAsFixed(0)}'),
-              ),
-            ),
-            SizedBox(
-              height: constraints.maxHeight * 0.05,
-            ),
-            SizedBox(
-              height: constraints.maxHeight * 0.6,
-              width: 10,
-              child: Stack(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey, width: 1.0),
-                      color: const Color.fromRGBO(220, 220, 220, 1),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  FractionallySizedBox(
-                    heightFactor: spendingPctOfTotal,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.orange[400],
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: constraints.maxHeight * 0.05,
-            ),
-            SizedBox(height: constraints.maxHeight * 0.15, child: Text(label)),
-          ],
-        );
-      },
     );
   }
 }
