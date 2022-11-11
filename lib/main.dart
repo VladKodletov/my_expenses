@@ -18,7 +18,6 @@ Future main() async {
 
   Hive.registerAdapter(TransactionAdapter());
   box = await Hive.openBox<Transaction>('transactions');
-
   runApp(const MyApp());
 }
 
@@ -36,13 +35,13 @@ class MyApp extends StatelessWidget {
                 backgroundColor: Colors.orange[400])
             .copyWith(secondary: Colors.grey[200]),
       ),
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -50,20 +49,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   //обратить внимание на метод перевода инфы из box в List<Transaction>
+
   final List<Transaction> _userTransactions =
       box.values.toList().cast<Transaction>();
 
   bool _showChart = false;
 
-  List<Transaction> get _recentTransactions {
-    return _userTransactions.where((tx) {
-      return tx.myDate.isAfter(
-        DateTime.now().subtract(
-          const Duration(days: 7),
-        ),
-      );
-    }).toList();
-  }
+  
 
   addTransaction(
     String tittle,
@@ -77,7 +69,6 @@ class _MyHomePageState extends State<MyHomePage> {
       id: DateTime.now().toString(),
     );
     box.add(newTrans);
-    
   }
 
   void _startAddNewTransaction(BuildContext ctx) {
@@ -86,6 +77,16 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (ctx) {
           return NewTransactions(addTransaction);
         });
+  }
+
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((tx) {
+      return tx.myDate.isAfter(
+        DateTime.now().subtract(
+          const Duration(days: 7),
+        ),
+      );
+    }).toList();
   }
 
   @override
