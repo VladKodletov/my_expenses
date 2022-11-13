@@ -1,14 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_expenses/widgets/mainscreen.dart';
 
-import './widgets/new_transaction.dart';
-import './widgets/transaction_list.dart';
 import './models/transaction.dart';
-import 'widgets/chart.dart';
 
 late Box box;
 
