@@ -11,7 +11,7 @@
 
 - Создал чарт с отображением затрат за каждый день в пропорциях от общих за последнюю неделю.
   <div id="header" align="center">
-  <img src="https://i.ibb.co/YcYjw4v/Media-221114-104229.gif" width="280"/> <img src="https://i.ibb.co/YcYjw4v/Media-221114-104229.gif" width="280"/>
+  <img src="https://i.ibb.co/YcYjw4v/Media-221114-104229.gif" width="280"/>
 </div>
 <div id="badges" align="center">
 
