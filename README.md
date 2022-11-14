@@ -4,10 +4,7 @@
 
 - Сверстал UI приложения.
 
-<!-- <div id="header" align="center">
-  <img src="https://i.ibb.co/1XxQk2N/Media-221114-103950.gif" width="280"/>
-</div>
-<div id="badges" align="center"> -->
+
 
 - Создал чарт с отображением затрат за каждый день в пропорциях от общих за последнюю неделю.
 <p align="center">
