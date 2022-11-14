@@ -5,7 +5,7 @@
 - Сверстал UI приложения.
 
 <div id="header" align="center">
-  <img src="https://ibb.co/5jV4Pc3" width="250"/>
+  <img src="https://i.ibb.co/1XxQk2N/Media-221114-103950.gif" width="350"/>
 </div>
 <div id="badges" align="center">
 
