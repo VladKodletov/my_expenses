@@ -8,7 +8,7 @@
 
 - Создал чарт с отображением затрат за каждый день в пропорциях от общих за последнюю неделю.
 <p align="center">
-  <img src="https://i.ibb.co/YcYjw4v/Media-221114-104229.gif">
+  <img src="https://i.ibb.co/thVtf13/20221114-112034.gif">
 </p>  
   
 
