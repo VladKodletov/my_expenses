@@ -1,4 +1,3 @@
-# my_expenses
 <h1 align="center">Приложение по учету затрат: "My expenses"</h1>
 <h2 align="center">
 
