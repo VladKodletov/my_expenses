@@ -2,11 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:my_expenses/features/mainscreen/data/models/transaction.dart';
 import 'package:my_expenses/main.dart';
-import 'package:my_expenses/models/transaction.dart';
-import 'package:my_expenses/widgets/chart.dart';
-import 'package:my_expenses/widgets/new_transaction.dart';
-import 'package:my_expenses/widgets/transaction_list.dart';
+
+import 'package:my_expenses/features/chart_bar/presentation/chart.dart';
+import 'package:my_expenses/features/new_transaction/presentation/new_transaction.dart';
+import 'package:my_expenses/features/mainscreen/presentation/widgets/transaction_list.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});

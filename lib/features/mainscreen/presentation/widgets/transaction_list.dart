@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import '../models/transaction.dart';
+
 import 'package:intl/intl.dart';
+import 'package:my_expenses/features/mainscreen/data/models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
   const TransactionList({super.key});

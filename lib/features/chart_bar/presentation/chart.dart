@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:my_expenses/widgets/chart_bar.dart';
-import '../models/transaction.dart';
+import 'package:my_expenses/features/mainscreen/data/models/transaction.dart';
+import 'package:my_expenses/features/chart_bar/presentation/widgets/chart_bar.dart';
+
 import 'package:intl/intl.dart';
 
 class MainChart extends StatelessWidget {
